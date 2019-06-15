@@ -1,0 +1,23 @@
+<div style="text-align:center">
+  <h1>
+    Machines Can See
+  </h1>
+
+  <div>
+    <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            [videoOptions]="videoOptions"
+            [imageQuality]="1"
+            (initError)="handleInitError($event)"
+    ></webcam>
+    <br/>
+    <button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+    <br/>
+  </div>
+
+  <button>Start streaming</button>
+  <button>Stop streaming</button>
+
+  <div class="emotions" *ngIf="emotions">
+    {{emotions | json}}
+  </div>
+</div>
