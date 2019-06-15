@@ -9,6 +9,14 @@ import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {WebcamModule} from "ngx-webcam";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDividerModule,
+  MatInputModule,
+  MatSelectModule,
+  MatToolbarModule
+} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -18,6 +26,12 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   imports: [
     BrowserModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDividerModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     WebcamModule,

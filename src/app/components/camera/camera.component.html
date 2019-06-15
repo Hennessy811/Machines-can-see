@@ -1,23 +1,46 @@
-<div style="text-align:center">
-  <h1>
-    Machines Can See
-  </h1>
+<mat-toolbar color="primary"><h1> ¯\_(ツ)_/¯</h1> Machines Can See</mat-toolbar>
+<div>
+  <div class="container">
+    <mat-card class="webcam-card">
+      <mat-card-title>
+        Webcam preview
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content class="card-content">
+        <webcam class="webcam-item" [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+                [videoOptions]="videoOptions"
+                [imageQuality]="1"
+                (initError)="handleInitError($event)"
+        ></webcam>
+        <div class="general">
+          <div class="text-summary" *ngIf="avg">
 
-  <div>
-    <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
-            [videoOptions]="videoOptions"
-            [imageQuality]="1"
-            (initError)="handleInitError($event)"
-    ></webcam>
-    <br/>
-    <button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
-    <br/>
+            <h2>Average metrics:</h2>
+
+            <hr>
+            <p><strong>Age:</strong> {{avg.age}}</p>
+            <p><strong>Smile:</strong> {{avg.smile}}</p>
+            <p><strong>Neutral:</strong> {{avg.emotion.neutral}}</p>
+            <p><strong>Fear:</strong> {{avg.emotion.fear}}</p>
+            <p><strong>Surprise:</strong> {{avg.emotion.surprise}}</p>
+            <p><strong>Sadness:</strong> {{avg.emotion.sadness}}</p>
+            <p><strong>Disgust:</strong> {{avg.emotion.disgust}}</p>
+            <p><strong>Contempt:</strong> {{avg.emotion.contempt}}</p>
+            <p><strong>Anger:</strong> {{avg.emotion.anger}}</p>
+            <p><strong>Happiness:</strong> {{avg.emotion.happiness}}</p>
+          </div>
+          <div id="piechartdiv" style="width: 100%; height: 200px"></div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+<!--        <button class="actionBtn" mat-stroked-button color="accent" (click)=";">Take A Snapshot</button>-->
+
+        <button mat-raised-button color="primary" (click)="onStreamEnable()" *ngIf="!alive">Start streaming</button>
+        <button mat-flat-button color="warn" (click)="onStreamDisable()" *ngIf="alive">Stop streaming</button>
+      </mat-card-actions>
+    </mat-card>
+    <div id="chartdiv" style="width: 40%; height: 500px"></div>
   </div>
 
-  <button>Start streaming</button>
-  <button>Stop streaming</button>
 
-  <div class="emotions" *ngIf="emotions">
-    {{emotions | json}}
-  </div>
 </div>
